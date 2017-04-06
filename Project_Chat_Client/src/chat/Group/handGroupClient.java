@@ -14,11 +14,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -69,12 +67,12 @@ public class handGroupClient {
         }
     }
 
-    public static void loadGroup(String[] data, ArrayList userNumMemGroup, JLabel txtStatutHoTen, JButton btnGroupInfo, JPanel panelInfoGroupLog, HashMap allClientOnServer, HashMap handGroup, JPanel panelSmsGroupList, PrintWriter sentServer_, String phoneNumberOfUser_) {
+    public static void loadGroup(String[] data, ArrayList userNumMemGroup, JLabel txtStatutHoTen, JButton btnGroupInfo, JPanel panelInfoGroupLog, HashMap allClientOnServer, HashMap handGroup, JPanel panelSmsGroupList, PrintWriter sentServer_, String phoneNumberOfUser_,JPanel panelLogChat) {
         if (data.length == 3) {
             String nameGroup = data[2].trim();
             //Gọi đối tượng panel add zô nhóm!
             //Truyền đối tượng txtStatutHoTen
-            panelNameGroup creatGroup = new panelNameGroup(userNumMemGroup, txtStatutHoTen, btnGroupInfo, nameGroup, panelInfoGroupLog, allClientOnServer, sentServer_, phoneNumberOfUser_);
+            panelNameGroup creatGroup = new panelNameGroup(userNumMemGroup, txtStatutHoTen, btnGroupInfo, nameGroup, panelInfoGroupLog, allClientOnServer, sentServer_, phoneNumberOfUser_,panelLogChat);
             handGroup.put(nameGroup.trim(), creatGroup);
             panelSmsGroupList.add(creatGroup);
             panelSmsGroupList.updateUI();
@@ -149,6 +147,12 @@ public class handGroupClient {
 
     public static void loadSms(String[] data, String sdt, JPanel panelLogChat, HashMap allClientOnServer, JScrollPane scrollPaneLogChat) {
         chatImage cm = new chatImage();
+        JLabel lb= new JLabel();
+        JLabel hinh = new JLabel();
+        JPanel panel1 = new JPanel(new BorderLayout());
+        JPanel panel2 = new JPanel(new BorderLayout());
+        panel1.setOpaque(false);
+        panel2.setOpaque(false);
         //có 2 dang load tin nhắn offline
         //Ngừi nhận
         //Người gửu
@@ -156,27 +160,21 @@ public class handGroupClient {
         //"group:chatGroup:sms:loadSms:"+rss.getString(1)+":"+rss.getString(2)+":"+rss.getString(3)
         if (("0" + data[4].trim()).equals(sdt)) {
             //Tin nhắn gửi
+            try{
             String textchat = data[6];
             Image test = cm.getImage("project_chat_server/image/icon_Chat_Sent.png");
             int size = textchat.length();
             Image test2 = test.getScaledInstance((int) ((size + 10) * (6.6)), 80, Image.SCALE_SMOOTH);
             //Phần sms text
-            JLabel lb = new JLabel();
             lb.setIcon(new ImageIcon(test2));
             lb.setText(textchat);
             lb.setForeground(Color.WHITE);
             Font f = new Font(textchat, 2, 14);
             lb.setFont(f);
             lb.setHorizontalTextPosition((int) CENTER_ALIGNMENT);
-
-            JPanel panel1 = new JPanel(new BorderLayout());
-            JPanel panel2 = new JPanel(new BorderLayout());
-            panel1.setOpaque(false);
-            panel2.setOpaque(false);
             panel1.add(panel2, BorderLayout.LINE_END);
             panel2.add(lb, BorderLayout.LINE_START);
             Image test3 = cm.getImage("project_chat_server/image/user_icon.png");
-            JLabel hinh = new JLabel();
             hinh.setIcon(new ImageIcon(test3));
             hinh.setHorizontalTextPosition((int) CENTER_ALIGNMENT);
             panel2.add(hinh, BorderLayout.LINE_END);
@@ -199,40 +197,56 @@ public class handGroupClient {
                 scrollPaneLogChat.repaint();
             });
             verticalBar.addAdjustmentListener(scroller);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            return;
         } else {
             //Tin nhắn nhận
-            try {
+            try{
                 String text = data[6];
-                Image test = ImageIO.read(getClass().getClassLoader().getResource("project_chat_server/image/icon_Chat_Receive.png"));
+                Image test = cm.getImage("project_chat_server/image/icon_Chat_Receive.png");
                 int size = text.length();
                 Image test2 = test.getScaledInstance((int) ((size + 15) * (6.6)), 60, Image.SCALE_SMOOTH);
                 //Phần sms text
-                JLabel lb = new JLabel();
                 lb.setIcon(new ImageIcon(test2));
                 lb.setText(text);
                 lb.setForeground(Color.BLUE);
                 Font f = new Font(text, 2, 14);
                 lb.setFont(f);
                 lb.setHorizontalTextPosition((int) CENTER_ALIGNMENT);
-                JPanel panel1 = new JPanel(new BorderLayout());
-                JPanel panel2 = new JPanel(new BorderLayout());
-                panel1.setOpaque(false);
-                panel2.setOpaque(false);
                 panel1.add(panel2, BorderLayout.LINE_START);
                 panel2.add(lb, BorderLayout.LINE_END);
-                Image test3 = ImageIO.read(getClass().getClassLoader().getResource("project_chat_server/image/user_icon.png"));
-                JLabel hinh = new JLabel();
+                Image test3 = cm.getImage("project_chat_server/image/user_icon.png");
                 hinh.setIcon(new ImageIcon(test3));
                 hinh.setHorizontalTextPosition((int) CENTER_ALIGNMENT);
-                String userName = allClientOnServer.get(Integer.parseInt(data[4].trim()));
+                String userName = (String) allClientOnServer.get(Integer.parseInt(data[4].trim()));
                 JLabel lb2 = new JLabel(userName);
                 lb2.setForeground(Color.BLUE);
                 panel2.add(hinh, BorderLayout.LINE_START);
                 panel2.add(lb2, BorderLayout.PAGE_START);
                 panelLogChat.add(panel1);
                 panelLogChat.updateUI();
-            } catch (IOException ex) {
-                System.out.println("Lỗi khi nhận tin nhắn nhóm" + ex.getMessage());
+                JScrollBar verticalBar = scrollPaneLogChat.getVerticalScrollBar();
+            // If we want to scroll to the top set this value to the minimum, else to the maximum
+            //int topOrBottom = direction.equals(ScrollDirection.UP) ? verticalBar.getMinimum() : verticalBar.getMaximum();
+            AdjustmentListener scroller = new AdjustmentListener() {
+                @Override
+                public void adjustmentValueChanged(AdjustmentEvent e) {
+                    Adjustable adjustable = e.getAdjustable();
+                    adjustable.setValue(verticalBar.getMaximum());
+                    //panelEmoji1.updateUI();
+                    // We have to remove the listener since otherwise the user would be unable to scroll afterwards
+                    verticalBar.removeAdjustmentListener(this);
+                }
+            };
+            scrollPaneLogChat.getVerticalScrollBar().addAdjustmentListener((final AdjustmentEvent e) -> {
+                scrollPaneLogChat.repaint();
+            });
+            verticalBar.addAdjustmentListener(scroller);
+            return;
+            }catch(Exception e){
+                System.out.println(e.getMessage());    
             }
         }
     }
