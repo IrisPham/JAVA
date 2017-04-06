@@ -1,0 +1,29 @@
+Xóa nhóm
+Server
+	- xóa nhóm :
+		ok : + xóa nhóm
+			 + gửi lại yêu cầu load danh sách nhóm cho client hiện tại // đã xong
+			 + gửi lại yêu cầu load danh sách nhóm cho tất cả thành viên trong nhóm để cập nhật danh sách bạn bè
+				+ Người đó đang online
+					+ Thì guier lại một yêu cầu loadGroup danh sach //đã xong
+					+ Cập nhật lại danh sách bạn bè trong nhóm cho người đó //đã xong
+					+ Thì gửi một text chat là người đó rời nhóm! đã xong
+		no : + gửi lại cho client thông báo xóa nhóm thất bại // đã xong
+Client 
+	- Gửi yêu cầu xóa nhóm gồm tên nhóm và số điện thoại hiện thời // đã xong
+	- Nếu nhận trong việc xóa nhóm
+		+ Ok thì load lại danh sách nhóm // đã xong
+		+ No thì load lên một thông báo thất bại trong xóa nhóm // đã xong
+
+		
+Lập trình nên đồng bộ trong phần nhóm
+bắt buộc có chữ group
+
+Tạo nhóm :  				group:createGroup:
+Xóa nhóm :  				group:deletegrGroup:
+Load nhóm : 				group:loadGroup:
+Nhận thông báo mời nhóm : 	group:notifiGroup:
+Gửi tin nhắn nhóm : 		group:chatGroup:sms:
+Gửi icon cảm xúc :  		group:chatGroup:emoij:
+Gửi Sicker : 				group:chatGroup:sticker:
+Gủi hình ảnh : 				group:chatGroup:picture:
