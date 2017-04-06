@@ -624,7 +624,7 @@ public final class client extends javax.swing.JFrame implements chat_client_inte
             case "notifiGroup":
                 break;
             case "loadGroup":
-                handGroupClient.loadGroup(data, userNumMemGroup, txtStatutHoTen, btnGroupInfo, panelInfoGroupLog, allClientOnServer,handGroup,panelSmsGroupList,sentServer_,sdt);
+                handGroupClient.loadGroup(data, userNumMemGroup, txtStatutHoTen, btnGroupInfo, panelInfoGroupLog, allClientOnServer,handGroup,panelSmsGroupList,sentServer_,sdt,panelLogChat);
                 break;
             case "chatGroup":
                 switch (data[2]){
@@ -632,7 +632,7 @@ public final class client extends javax.swing.JFrame implements chat_client_inte
                         if (!"loadSms".equals(data[3])) {
                             handGroupClient.sms(data, txtStatutHoTen, panelLogChat, allClientOnServer, scrollPaneLogChat);
                         }else{
-                         
+                            handGroupClient.loadSms(data, sdt, panelLogChat, allClientOnServer, scrollPaneLogChat);
                         }
                         
                         break;

@@ -46,7 +46,7 @@ public class panelNameGroup extends JPanel {
     private PrintWriter sentServer_;
     private String nameGroup_;
     private String phoneNumberOfUser_;
-    public panelNameGroup(ArrayList userNumMemGroup,JLabel txtStatutHoTen,JButton btnGroupInfo, String nameGroup, JPanel panelInfoGroupLog,HashMap allClientOnServer,PrintWriter sentServer_,String phoneNumberOfUser_) {
+    public panelNameGroup(ArrayList userNumMemGroup,JLabel txtStatutHoTen,JButton btnGroupInfo, String nameGroup, JPanel panelInfoGroupLog,HashMap allClientOnServer,PrintWriter sentServer_,String phoneNumberOfUser_,JPanel panelLogChat) {
         try {
             btnUserImage = ImageIO.read(getClass().getClassLoader().getResource("project_chat_server/image/Chat/ContactGroup.png"));
             btnClearImage = ImageIO.read(getClass().getClassLoader().getResource("project_chat_server/image/ContactsTool/Cancel.png"));
@@ -84,6 +84,8 @@ public class panelNameGroup extends JPanel {
                     panelInfoGroupLog.add(pn);
                     panelInfoGroupLog.updateUI();
                 }
+                panelLogChat.removeAll();
+                panelLogChat.updateUI();
                 //group:chatGroup:sms:loadSms:tên người sử dụng + tên nhóm
                 sentServer_.println("group:chatGroup:sms:loadSms:"+phoneNumberOfUser_+":"+nameGroup.trim());
                 sentServer_.flush();
