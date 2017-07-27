@@ -38,7 +38,7 @@ public class PlaceRenderer extends JPanel implements ListCellRenderer<Place>{
     public Component getListCellRendererComponent(JList<? extends Place> list, Place value, int index, boolean isSelected, boolean cellHasFocus) {
         try {
             Image image = ImageIO.read(getClass().getClassLoader().getResource("projectbasic/src/ic_main_place.png"));
-            Image image2 = image.getScaledInstance(75,75, image.SCALE_SMOOTH);
+            Image image2 = image.getScaledInstance(65,65, image.SCALE_SMOOTH);
             lbIconPlace.setIcon(new ImageIcon(image2));
         } catch (IOException e) {
             System.out.println(""+e.getMessage());
