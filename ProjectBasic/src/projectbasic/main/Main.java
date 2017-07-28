@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projectbasic.ui;
+package projectbasic.main;
 
+import com.sun.javafx.scene.control.skin.ButtonSkin;
 import de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,6 +35,7 @@ import javax.swing.table.TableColumn;
 import projectbasic.items.Place;
 import projectbasic.renderer.JTableButtonRenderer;
 import projectbasic.renderer.PlaceRenderer;
+import projectbasic.table.TableFoodDetail;
 
 /**
  *
@@ -53,7 +56,6 @@ public class Main extends javax.swing.JFrame {
         setdate();
         settingPanelPlaceDetail();
         settingPanleListFoodDetail();
-        settingTableFoodDetail();
         settingTableTotalBill();
         settingJlistFood();
     }
@@ -99,7 +101,9 @@ public class Main extends javax.swing.JFrame {
         list.setCellRenderer(new PlaceRenderer());
         return list;
     }
-
+    private void setActionForChooserGirdViewTable(JButton button,ActionListener at){
+        button.addActionListener(at);
+    }
     private void settingPanelPlaceDetail() {
         panelPlacedetail.setBorder(new TitledBorder("Khu 1"));
         panelPlacedetail.setLayout(new GridLayout(6, 3));
@@ -112,8 +116,10 @@ public class Main extends javax.swing.JFrame {
                 button.setHorizontalTextPosition(SwingConstants.CENTER);
                 button.setVerticalTextPosition(SwingConstants.BOTTOM);
                 button.setText("Bàn số " + i);
-                button.addActionListener((ActionEvent e) -> {
-                    button.setEnabled(false);
+                button.addActionListener((e) -> {
+                    System.out.println(button);
+                    tableFoodDetai.removeRowSelectionInterval(0,tableFoodDetai.getRowCount() - 1);
+                    new TableFoodDetail(tableFoodDetai);
                 });
                 panelPlacedetail.add(button);
             } catch (IOException e) {
@@ -142,46 +148,7 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }
-
-    private void settingTableFoodDetail() {
-        String[] columName = {"STT", "Tên món", "Số lượng", "Đơn vị", "Đơn giá",
-            "Giảm giá (%)", "Tổng tiền"};
-        Object[][] data = {
-            {1, "Bia Hà Nội chai lùn", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {2, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {3, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {4, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {5, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {6, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {7, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {8, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {9, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"},
-            {10, "Bia Hà Nội chai dìa", 5, "Chai", 10000, 0, 50000 + " VND"}
-        };
-        //setTableModel 
-        DefaultTableModel tableModel = new DefaultTableModel(data, columName);
-        //Set Model for tableFoodDetail
-        tableFoodDetai.setModel(tableModel);
-        tableFoodDetai.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tableFoodDetai.getColumnModel().getColumn(0).setPreferredWidth(27);
-        tableFoodDetai.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tableFoodDetai.getColumnModel().getColumn(2).setPreferredWidth(55);
-        tableFoodDetai.getColumnModel().getColumn(3).setPreferredWidth(60);
-        tableFoodDetai.getColumnModel().getColumn(4).setPreferredWidth(60);
-        tableFoodDetai.getColumnModel().getColumn(6).setPreferredWidth(110);
-
-        //set Strig center for cell
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        tableFoodDetai.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-        tableFoodDetai.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
-        tableFoodDetai.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
-        tableFoodDetai.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
-        tableFoodDetai.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
-        tableFoodDetai.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
-
-    }
-
+    
     private void settingJlistFood() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         listModel.addElement("Tất cả món");
