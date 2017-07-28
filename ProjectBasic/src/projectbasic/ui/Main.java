@@ -28,8 +28,10 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import projectbasic.items.Place;
+import projectbasic.renderer.JTableButtonRenderer;
 import projectbasic.renderer.PlaceRenderer;
 
 /**
@@ -202,17 +204,29 @@ public class Main extends javax.swing.JFrame {
     }
     
     private void settingTableTotalBill(){
+        Image image = null;
+        Image image2 = null;
+        Image image3 = null;
+        Image image4 = null;
+        try {
+            image = ImageIO.read(getClass().getClassLoader().getResource("projectbasic/src/ic_main_pay.png"));
+            image2 = image.getScaledInstance(110,20,Image.SCALE_SMOOTH);
+            image3 = ImageIO.read(getClass().getClassLoader().getResource("projectbasic/src/ic_main_cancel.png"));
+            image4 = image3.getScaledInstance(110,20,Image.SCALE_SMOOTH);
+        } catch (IOException e) {
+            System.out.println(""+e.getMessage());
+        }
         String[] columName = {"STT", "Mã hóa đơn", "Giảm giá", "Tiền giá trị gia tăng"
                 , "Tiền chiết khấu","Tổng hóa đơn","Trạng thái"};
         Object[][] data = {
-            {1,219,0,0,0,85000 + "VND","Thanh toán"},
-            {2,219,0,0,0,85000 + "VND","Thanh toán"},
-            {3,219,0,0,0,85000 + "VND","Thanh toán"},
-            {4,219,0,0,0,85000 + "VND","Thanh toán"},
-            {5,219,0,0,0,85000 + "VND","Thanh toán"},
-            {6,219,0,0,0,85000 + "VND","Thanh toán"},
-            {7,219,0,0,0,85000 + "VND","Hủy"},
-            {8,219,0,0,0,85000 + "VND","Hủy"},
+            {1,219,0,0,0,85000 + "VND",image2},
+            {2,219,0,0,0,85000 + "VND",image2},
+            {3,219,0,0,0,85000 + "VND",image4},
+            {4,219,0,0,0,85000 + "VND",image2},
+            {5,219,0,0,0,85000 + "VND",image4},
+            {6,219,0,0,0,85000 + "VND",image4},
+            {7,219,0,0,0,85000 + "VND",image2},
+            
         };
         //setTableModel 
         DefaultTableModel tableModel = new DefaultTableModel(data, columName);
@@ -225,6 +239,8 @@ public class Main extends javax.swing.JFrame {
         tableTotalBill.getColumnModel().getColumn(3).setPreferredWidth(60);
         tableTotalBill.getColumnModel().getColumn(4).setPreferredWidth(60);
         tableTotalBill.getColumnModel().getColumn(6).setPreferredWidth(110);
+        
+        tableTotalBill.setRowHeight(28);
 
         //set Strig center for cell
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -235,6 +251,10 @@ public class Main extends javax.swing.JFrame {
         tableTotalBill.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         tableTotalBill.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
         tableTotalBill.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        
+        //Insert button for cell[6] tableToalBill
+        TableCellRenderer buttonRenderer = new JTableButtonRenderer();
+        tableTotalBill.getColumnModel().getColumn(6).setCellRenderer(buttonRenderer);
         
     }
     /**
