@@ -43,7 +43,6 @@ public class Main extends javax.swing.JFrame {
         panelPlace.setLayout(new BorderLayout());
         panelPlace.add(new JScrollPane(listPlace = createListPlace()),BorderLayout.CENTER);
         setdate();
-        imageEnable();
         settingPanelPlaceDetail();
         settingPanleListFoodDetail();
     }
@@ -58,13 +57,6 @@ public class Main extends javax.swing.JFrame {
         lb_date.setText(""+ fm.format(date));
     }
     
-    private void imageEnable(){
-        jLabel19.setEnabled(false);
-        jLabel20.setEnabled(false);
-        jLabel21.setEnabled(false);
-        
-        
-    }
     private JList<Place> createListPlace() {
         // create List model
         DefaultListModel<Place> model = new DefaultListModel<>();
@@ -138,8 +130,8 @@ public class Main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        tabb_ThongKe = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        tabb_Main = new javax.swing.JTabbedPane();
+        tabb_qlBan = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -185,7 +177,7 @@ public class Main extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jScrollPane11 = new javax.swing.JScrollPane();
         panelListFoodDetail = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
+        tabb_Thongke = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -237,7 +229,7 @@ public class Main extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
+        tabb_qlThucDon = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -246,6 +238,19 @@ public class Main extends javax.swing.JFrame {
         btnThem_mon = new javax.swing.JButton();
         btnSua_mon = new javax.swing.JButton();
         btnXoa_thuc_don = new javax.swing.JButton();
+        tabb_qlNhanSu = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jtabNhanSu = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jlistNhanSu = new javax.swing.JList<>();
+        btnThem_qlnv = new javax.swing.JButton();
+        btnSua_qlnv = new javax.swing.JButton();
+        btnXoa_qlnv = new javax.swing.JButton();
+        btnTimKem_qlnv = new javax.swing.JButton();
+        txtTimKiem_qlnv = new javax.swing.JTextField();
+        txt_qlnv = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -277,7 +282,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
-                .addContainerGap(777, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +296,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        tabb_qlBan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,19 +311,19 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 590, 220));
+        tabb_qlBan.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 590, 220));
 
         jLabel1.setText("Ghi chú:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, 40));
+        tabb_qlBan.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, 40));
 
         jScrollPane2.setViewportView(jTextPane1);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 540, 40));
+        tabb_qlBan.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 540, 40));
 
-        panelPlacedetail.setLayout(new java.awt.GridLayout());
+        panelPlacedetail.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane9.setViewportView(panelPlacedetail);
 
-        jPanel2.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 420, 240));
+        tabb_qlBan.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 420, 240));
 
         javax.swing.GroupLayout panelPlaceLayout = new javax.swing.GroupLayout(panelPlace);
         panelPlace.setLayout(panelPlaceLayout);
@@ -333,7 +338,7 @@ public class Main extends javax.swing.JFrame {
 
         jScrollPane10.setViewportView(panelPlace);
 
-        jPanel2.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 240));
+        tabb_qlBan.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 240));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2), "Thanh toán", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 51, 204))); // NOI18N
 
@@ -543,7 +548,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 410, -1));
+        tabb_qlBan.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 410, -1));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2), "Menu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204)), "Danh mục thực đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
@@ -556,7 +561,7 @@ public class Main extends javax.swing.JFrame {
 
         jScrollPane11.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        panelListFoodDetail.setLayout(new java.awt.GridLayout());
+        panelListFoodDetail.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane11.setViewportView(panelListFoodDetail);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -580,11 +585,11 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 410, 190));
+        tabb_qlBan.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 410, 190));
 
-        tabb_ThongKe.addTab("Quản lý bàn", jPanel2);
+        tabb_Main.addTab("Quản lý bàn", tabb_qlBan);
 
-        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        tabb_Thongke.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel20.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -658,15 +663,15 @@ public class Main extends javax.swing.JFrame {
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel10.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 630, 550));
+        tabb_Thongke.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 630, 550));
 
         jPanel21.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -832,15 +837,15 @@ public class Main extends javax.swing.JFrame {
 
         jPanel21.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 310, 70));
 
-        jPanel10.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 380, 550));
+        tabb_Thongke.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 380, 550));
 
-        tabb_ThongKe.addTab("Thống kê", jPanel10);
+        tabb_Main.addTab("Thống kê", tabb_Thongke);
 
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        tabb_qlThucDon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2), "Danh mục thực đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel9.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, 190, 330));
+        tabb_qlThucDon.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, 190, 330));
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2), "Danh mục các món"));
         jPanel12.setLayout(new java.awt.BorderLayout());
@@ -860,19 +865,121 @@ public class Main extends javax.swing.JFrame {
 
         jPanel12.add(jScrollPane5, java.awt.BorderLayout.CENTER);
 
-        jPanel9.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 11, 810, 460));
-        jPanel9.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 190, 32));
+        tabb_qlThucDon.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 11, 810, 460));
+        tabb_qlThucDon.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 190, 32));
 
         btnThem_mon.setText("Thêm mới");
-        jPanel9.add(btnThem_mon, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, -1, -1));
+        tabb_qlThucDon.add(btnThem_mon, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, -1, -1));
 
         btnSua_mon.setText("Sửa món");
-        jPanel9.add(btnSua_mon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
+        tabb_qlThucDon.add(btnSua_mon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
 
         btnXoa_thuc_don.setText("Xóa món đã chọn");
-        jPanel9.add(btnXoa_thuc_don, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 170, -1));
+        tabb_qlThucDon.add(btnXoa_thuc_don, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 170, -1));
 
-        tabb_ThongKe.addTab("Quản lý thực đơn", jPanel9);
+        tabb_Main.addTab("Quản lý thực đơn", tabb_qlThucDon);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 204, 102), null), "Danh sách nhân viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 204, 102))); // NOI18N
+
+        jtabNhanSu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane12.setViewportView(jtabNhanSu);
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 204, 204), null), "Danh mục chức vụ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 51, 255))); // NOI18N
+
+        jlistNhanSu.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jlistNhanSu);
+
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 420));
+
+        btnThem_qlnv.setText("Thêm mới");
+
+        btnSua_qlnv.setText("Sửa");
+
+        btnXoa_qlnv.setText("Xóa mục đã chọn");
+
+        btnTimKem_qlnv.setText("Tìm kiếm nhanh");
+
+        txtTimKiem_qlnv.setText("jTextField8");
+
+        txt_qlnv.setText("jTextField9");
+
+        javax.swing.GroupLayout tabb_qlNhanSuLayout = new javax.swing.GroupLayout(tabb_qlNhanSu);
+        tabb_qlNhanSu.setLayout(tabb_qlNhanSuLayout);
+        tabb_qlNhanSuLayout.setHorizontalGroup(
+            tabb_qlNhanSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabb_qlNhanSuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tabb_qlNhanSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(tabb_qlNhanSuLayout.createSequentialGroup()
+                        .addComponent(btnThem_qlnv)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSua_qlnv, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_qlnv))
+                .addGroup(tabb_qlNhanSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabb_qlNhanSuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(tabb_qlNhanSuLayout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(btnTimKem_qlnv)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTimKiem_qlnv, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(35, Short.MAX_VALUE))))
+            .addGroup(tabb_qlNhanSuLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(btnXoa_qlnv)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        tabb_qlNhanSuLayout.setVerticalGroup(
+            tabb_qlNhanSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabb_qlNhanSuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tabb_qlNhanSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane12))
+                .addGroup(tabb_qlNhanSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabb_qlNhanSuLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(tabb_qlNhanSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnTimKem_qlnv)
+                            .addComponent(txtTimKiem_qlnv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabb_qlNhanSuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_qlnv, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(tabb_qlNhanSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSua_qlnv)
+                            .addComponent(btnThem_qlnv))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(btnXoa_qlnv)
+                .addGap(22, 22, 22))
+        );
+
+        tabb_Main.addTab("Quản lý nhân sự", tabb_qlNhanSu);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Bản quyền thuộc về xxx :v ");
@@ -893,7 +1000,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabb_ThongKe)
+                    .addComponent(tabb_Main)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -904,7 +1011,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tabb_ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tabb_Main, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(0, 0, 0))
@@ -959,7 +1066,11 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSua_mon;
+    private javax.swing.JButton btnSua_qlnv;
     private javax.swing.JButton btnThem_mon;
+    private javax.swing.JButton btnThem_qlnv;
+    private javax.swing.JButton btnTimKem_qlnv;
+    private javax.swing.JButton btnXoa_qlnv;
     private javax.swing.JButton btnXoa_thuc_don;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1029,7 +1140,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
@@ -1043,14 +1153,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -1069,11 +1181,19 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JList<String> jlistNhanSu;
+    private javax.swing.JTable jtabNhanSu;
     private javax.swing.JLabel lb_date;
     private javax.swing.JPanel panelListFoodDetail;
     private javax.swing.JPanel panelPlace;
     private javax.swing.JPanel panelPlacedetail;
-    private javax.swing.JTabbedPane tabb_ThongKe;
+    private javax.swing.JTabbedPane tabb_Main;
+    private javax.swing.JPanel tabb_Thongke;
+    private javax.swing.JPanel tabb_qlBan;
+    private javax.swing.JPanel tabb_qlNhanSu;
+    private javax.swing.JPanel tabb_qlThucDon;
+    private javax.swing.JTextField txtTimKiem_qlnv;
+    private javax.swing.JTextField txt_qlnv;
     private javax.swing.JTextField txttong_tien;
     // End of variables declaration//GEN-END:variables
 }
