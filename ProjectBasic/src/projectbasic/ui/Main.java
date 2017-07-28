@@ -46,19 +46,34 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         initialzation();
-
         panelPlace.setLayout(new BorderLayout());
         panelPlace.add(new JScrollPane(listPlace = createListPlace()), BorderLayout.CENTER);
         setdate();
         settingPanelPlaceDetail();
         settingPanleListFoodDetail();
         settingTableFoodDetail();
+        settingTableTotalBill();
         settingJlistFood();
     }
 
     private void initialzation() {
         getContentPane().setBackground(new Color(107, 70, 53));
         setResizable(false);
+        //Set image for Button
+        try {
+            Image image = ImageIO.read(getClass().getClassLoader().getResource("projectbasic/src/ic_main_excel.png"));
+            Image image2 = image.getScaledInstance(25,25,Image.SCALE_SMOOTH);
+            btnExportFileExcel.setIcon(new ImageIcon(image2));
+        } catch (IOException e) {
+            System.out.println(""+e.getMessage());
+        }
+        try {
+            Image image = ImageIO.read(getClass().getClassLoader().getResource("projectbasic/src/ic_main_statistical.jpg"));
+            Image image2 = image.getScaledInstance(25,25,Image.SCALE_SMOOTH);
+            btnStatistical.setIcon(new ImageIcon(image2));
+        } catch (IOException e) {
+            System.out.println(""+e.getMessage());
+        }
     }
 
     private void setdate() {
@@ -185,7 +200,43 @@ public class Main extends javax.swing.JFrame {
         listModel.addElement("Tất cả món");
         listFood.setModel(listModel);
     }
+    
+    private void settingTableTotalBill(){
+        String[] columName = {"STT", "Mã hóa đơn", "Giảm giá", "Tiền giá trị gia tăng"
+                , "Tiền chiết khấu","Tổng hóa đơn","Trạng thái"};
+        Object[][] data = {
+            {1,219,0,0,0,85000 + "VND","Thanh toán"},
+            {2,219,0,0,0,85000 + "VND","Thanh toán"},
+            {3,219,0,0,0,85000 + "VND","Thanh toán"},
+            {4,219,0,0,0,85000 + "VND","Thanh toán"},
+            {5,219,0,0,0,85000 + "VND","Thanh toán"},
+            {6,219,0,0,0,85000 + "VND","Thanh toán"},
+            {7,219,0,0,0,85000 + "VND","Hủy"},
+            {8,219,0,0,0,85000 + "VND","Hủy"},
+        };
+        //setTableModel 
+        DefaultTableModel tableModel = new DefaultTableModel(data, columName);
+        //Set Model for tableFoodDetail
+        tableTotalBill.setModel(tableModel);
+        tableTotalBill.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tableTotalBill.getColumnModel().getColumn(0).setPreferredWidth(27);
+        tableTotalBill.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tableTotalBill.getColumnModel().getColumn(2).setPreferredWidth(55);
+        tableTotalBill.getColumnModel().getColumn(3).setPreferredWidth(60);
+        tableTotalBill.getColumnModel().getColumn(4).setPreferredWidth(60);
+        tableTotalBill.getColumnModel().getColumn(6).setPreferredWidth(110);
 
+        //set Strig center for cell
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        tableTotalBill.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tableTotalBill.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tableTotalBill.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tableTotalBill.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tableTotalBill.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tableTotalBill.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -248,7 +299,7 @@ public class Main extends javax.swing.JFrame {
         jPanel20 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tableTotalBill = new javax.swing.JTable();
         jPanel16 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
@@ -271,8 +322,8 @@ public class Main extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnExportFileExcel = new javax.swing.JButton();
+        btnStatistical = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
@@ -324,7 +375,7 @@ public class Main extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane13 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton9 = new javax.swing.JButton();
+        btnShowChamCong = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -536,7 +587,7 @@ public class Main extends javax.swing.JFrame {
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2), "Tất cả hóa đơn"));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tableTotalBill.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -547,7 +598,7 @@ public class Main extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(jTable3);
+        jScrollPane6.setViewportView(tableTotalBill);
 
         jPanel15.add(jScrollPane6, java.awt.BorderLayout.CENTER);
 
@@ -694,11 +745,11 @@ public class Main extends javax.swing.JFrame {
         jTextField7.setText("jTextField7");
         jPanel13.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 39, -1, -1));
 
-        jButton7.setText("Xuất file Excel");
-        jPanel13.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 77, -1, -1));
+        btnExportFileExcel.setText("Xuất file Excel");
+        jPanel13.add(btnExportFileExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jButton8.setText("Xem thống kê");
-        jPanel13.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 77, -1, -1));
+        btnStatistical.setText("Xem thống kê");
+        jPanel13.add(btnStatistical, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
 
         jPanel21.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 311, 120));
 
@@ -942,7 +993,7 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane13.setViewportView(jTable1);
 
-        jButton9.setText("Hiển thị");
+        btnShowChamCong.setText("Hiển thị");
 
         jButton10.setText("Cập nhật");
 
@@ -963,7 +1014,7 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9)))
+                        .addComponent(btnShowChamCong)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
@@ -984,7 +1035,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(jLabel20))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9))
+                    .addComponent(btnShowChamCong))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -1080,6 +1131,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExportFileExcel;
+    private javax.swing.JButton btnShowChamCong;
+    private javax.swing.JButton btnStatistical;
     private javax.swing.JButton btnSua_mon;
     private javax.swing.JButton btnSua_qlnv;
     private javax.swing.JButton btnThem_mon;
@@ -1095,9 +1149,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -1189,7 +1240,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
@@ -1213,6 +1263,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel tabb_qlNhanSu;
     private javax.swing.JPanel tabb_qlThucDon;
     private javax.swing.JTable tableFoodDetai;
+    private javax.swing.JTable tableTotalBill;
     private javax.swing.JTextField txtTimKiem_qlnv;
     private javax.swing.JTextField txt_qlnv;
     private javax.swing.JTextField txttong_tien;
